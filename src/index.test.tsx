@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import ResizableContainer from '.'
 
-describe('ExampleComponent', () => {
+describe('ResizeContainer', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(ResizableContainer).toBeTruthy()
   })
 })

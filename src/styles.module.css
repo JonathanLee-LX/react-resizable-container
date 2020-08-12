@@ -1,9 +1,45 @@
 /* add css module styles here (optional) */
 
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
-  text-align: center;
+.container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.flex {
+  overflow: scroll;
+  min-height: 100px;
+  display: flex;
+  width: 100%;
+}
+
+.fixed {
+  position: relative;
+  height: 300px;
+  overflow: scroll;
+  width: 100%;
+}
+
+.dragLine {
+  height: 10px;
+  background-color: #d9d9d9;
+  z-index: 9999;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+}
+
+.dragLine:hover {
+  cursor: row-resize;
+  border: 1px solid #aaa;
+}
+
+.dragLine > i {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background-color: #888;
 }

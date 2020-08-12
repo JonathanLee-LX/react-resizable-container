@@ -6,21 +6,37 @@
 
 ## Install
 
+### use npm
+
 ```bash
-npm install --save react-resizable
+npm install --save @jonathanleelx/react-resizable
+```
+
+### use yarn
+
+```
+yarn add @jonathanleelx/react-resizable
 ```
 
 ## Usage
 
 ```tsx
 import React, { Component } from 'react'
+import ResizableContainer from '@jonathanleelx/react-resizable'
 
-import MyComponent from 'react-resizable'
-import 'react-resizable/dist/index.css'
+import '@jonathanleelx/react-resizable/dist/index.css'
 
-class Example extends Component {
+const Flex = () => {
+  return <div>flex</div>
+}
+
+const Fixed = () => {
+  return <div>fixed</div>
+}
+
+class App extends Component {
   render() {
-    return <MyComponent />
+    return <ResizableContainer flex={<Flex />} fixed={<Fixed />} />
   }
 }
 ```

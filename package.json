@@ -10,7 +10,7 @@
   ],
   "author": "JonathanLee-LX",
   "license": "MIT",
-  "repository": "JonathanLee-LX/react-resizable",
+  "repository": "JonathanLee-LX/react-resizable-container",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import debounce from 'debounce'
+import { throttle } from 'throttle-debounce'
 import styles from './styles.module.css'
 
 export interface ResizableContainerProps {
@@ -34,20 +34,22 @@ const ResizableContainer: React.FC<ResizableContainerProps> = (props) => {
   const bottom = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const onResize = () => {
+    const onResize = throttle(4, () => {
       const prevContainerHeight = flexHeight! + fixedHeight + RESIZE_BAR_HEIGHT
       const containerHeight = container.current?.getBoundingClientRect().height
       // 高度不变
       if (prevContainerHeight === containerHeight) return
-      const newFlexHeight = Math.floor(
-        (containerHeight! - RESIZE_BAR_HEIGHT) / 2
-      )
-      const newFixedHeight =
-        containerHeight! - newFlexHeight - RESIZE_BAR_HEIGHT
+      requestAnimationFrame(() => {
+        const newFlexHeight = Math.floor(
+          (containerHeight! - RESIZE_BAR_HEIGHT) / 2
+        )
+        const newFixedHeight =
+          containerHeight! - newFlexHeight - RESIZE_BAR_HEIGHT
 
-      setFlexHeight(newFlexHeight)
-      setFixedHeight(newFixedHeight)
-    }
+        setFlexHeight(newFlexHeight)
+        setFixedHeight(newFixedHeight)
+      })
+    })
 
     window.addEventListener('resize', onResize)
 
@@ -68,28 +70,32 @@ const ResizableContainer: React.FC<ResizableContainerProps> = (props) => {
     const resizeLine = dragLine.current as HTMLDivElement
     const containerNode = container.current as HTMLDivElement
 
-    const onMouseMove = debounce((e: MouseEvent) => {
-      if (!resizeLine) throw new Error('resizeLine is not attached')
+    const onMouseMove = throttle(4, (e: MouseEvent) => {
+      requestAnimationFrame(() => {
+        if (!resizeLine) throw new Error('resizeLine is not attached')
 
-      const containerHeight = container.current?.getBoundingClientRect().height!
+        const containerHeight = container.current?.getBoundingClientRect()
+          .height!
 
-      const offsetY =
-        e.clientY - container.current?.getBoundingClientRect().top!
+        const offsetY =
+          e.clientY - container.current?.getBoundingClientRect().top!
 
-      let newFixedHeight = containerHeight - offsetY - RESIZE_BAR_HEIGHT / 2
+        let newFixedHeight = containerHeight - offsetY - RESIZE_BAR_HEIGHT / 2
 
-      newFixedHeight =
-        newFixedHeight < MIN_FIXED_HEIGHT ? MIN_FIXED_HEIGHT : newFixedHeight
+        newFixedHeight =
+          newFixedHeight < MIN_FIXED_HEIGHT ? MIN_FIXED_HEIGHT : newFixedHeight
 
-      const newFlexHeight = containerHeight - newFixedHeight - RESIZE_BAR_HEIGHT
+        const newFlexHeight =
+          containerHeight - newFixedHeight - RESIZE_BAR_HEIGHT
 
-      setFixedHeight(newFixedHeight)
-      setFlexHeight(newFlexHeight)
+        setFixedHeight(newFixedHeight)
+        setFlexHeight(newFlexHeight)
 
-      if (onFixedHeightChange) {
-        onFixedHeightChange(fixedHeight)
-      }
-    }, 10)
+        if (onFixedHeightChange) {
+          onFixedHeightChange(fixedHeight)
+        }
+      })
+    })
 
     const onMouseDown = () => {
       containerNode.addEventListener('mousemove', onMouseMove)

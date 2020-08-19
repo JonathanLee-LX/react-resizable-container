@@ -1801,6 +1801,11 @@
     "@types/testing-library__dom" "*"
     pretty-format "^25.1.0"
 
+"@types/throttle-debounce@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/@types/throttle-debounce/download/@types/throttle-debounce-2.1.0.tgz#1c3df624bfc4b62f992d3012b84c56d41eab3776"
+  integrity sha1-HD32JL/Eti+ZLTASuExW1B6rN3Y=
+
 "@types/yargs-parser@*":
   version "15.0.0"
   resolved "https://registry.npm.taobao.org/@types/yargs-parser/download/@types/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"
@@ -3830,11 +3835,6 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     abab "^2.0.0"
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
-
-debounce@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/debounce/download/debounce-1.2.0.tgz?cache=0&sync_timestamp=1589807915709&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdebounce%2Fdownload%2Fdebounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
-  integrity sha1-RKVAq8DqmUMBjcDqqVzOh/Zc0TE=
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -10943,6 +10943,11 @@ throat@^4.0.0:
   version "4.1.0"
   resolved "https://registry.npm.taobao.org/throat/download/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"
   integrity sha1-iQN8vJLFarGJJua6TLsgDhVnKmo=
+
+throttle-debounce@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npm.taobao.org/throttle-debounce/download/throttle-debounce-2.3.0.tgz?cache=0&sync_timestamp=1597223471612&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fthrottle-debounce%2Fdownload%2Fthrottle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2"
+  integrity sha1-/TGGXmZQIHHkEYF+JBRls+nDcuI=
 
 through2@^2.0.0:
   version "2.0.5"

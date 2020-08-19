@@ -35,7 +35,10 @@ const ResizableContainer: React.FC<ResizableContainerProps> = (props) => {
 
   useEffect(() => {
     const onResize = () => {
+      const prevContainerHeight = flexHeight! + fixedHeight + RESIZE_BAR_HEIGHT
       const containerHeight = container.current?.getBoundingClientRect().height
+      // 高度不变
+      if (prevContainerHeight === containerHeight) return
       const newFlexHeight = Math.floor(
         (containerHeight! - RESIZE_BAR_HEIGHT) / 2
       )
@@ -49,7 +52,7 @@ const ResizableContainer: React.FC<ResizableContainerProps> = (props) => {
     window.addEventListener('resize', onResize)
 
     return () => window.removeEventListener('resize', onResize)
-  }, [])
+  }, [flexHeight, fixedHeight])
 
   useEffect(function initialFlexHeight() {
     const containerNode = container.current as HTMLDivElement
